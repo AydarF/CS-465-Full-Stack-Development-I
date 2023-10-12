@@ -12,8 +12,9 @@ const authController = require("../cotrollers/authentication");
 const tripsController = require("../cotrollers/trips");
 
 router.route("/login").post(authController.login);
-
 router.route("/register").post(authController.register);
+
+router.route("/user").get(tripsController.getUser);
 
 router
   .route("/trips")
