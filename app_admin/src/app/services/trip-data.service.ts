@@ -1,5 +1,5 @@
 import { Inject, Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { lastValueFrom } from "rxjs";
 import { Trip } from "../models/trip";
 import { User } from "../models/user";
@@ -31,23 +31,43 @@ export class TripDataService {
 
   public async addTrip(formData: Trip): Promise<Trip> {
     console.log("Inside TripDataService#addTrip");
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.storage.getItem("travlr-token")}`,
+      }),
+    };
     return await lastValueFrom(
-      this.httpClient.post<Trip[]>(`${this.apiBaseUrl}/trips`, formData)
+      this.httpClient.post<Trip[]>(
+        `${this.apiBaseUrl}/trips`,
+        formData,
+        httpOptions
+      )
     ).catch(this.handleError);
   }
 
   public async updateTrip(formData: Trip): Promise<Trip[]> {
     console.log(`Inside TripDataService#updateTrip('${formData.code}')`);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.storage.getItem("travlr-token")}`,
+      }),
+    };
     return await lastValueFrom(
       this.httpClient.put<Trip[]>(
         `${this.apiBaseUrl}/trips/${formData.code}`,
-        formData
+        formData,
+        httpOptions
       )
     ).catch(this.handleError);
   }
 
   public async deleteTrip(tripCode: string): Promise<any> {
     console.log(`Inside TripDataService#deleteTrip('${tripCode}')`);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.storage.getItem("travlr-token")}`,
+      }),
+    };
     return await lastValueFrom(
       this.httpClient.delete(`${this.apiBaseUrl}/trips/${tripCode}`)
     ).catch(this.handleError);
