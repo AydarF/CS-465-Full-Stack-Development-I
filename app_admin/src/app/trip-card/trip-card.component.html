@@ -12,7 +12,16 @@
     </p>
     <p class="card-text" [innerHTML]="trip.description"></p>
   </div>
+
   <div *ngIf="isLoggedIn()">
     <button class="btn btn-primary m-2" (click)="editTrip(trip)">Edit</button>
+
+    <button
+      (click)="deleteTrip(trip)"
+      class="btn btn-info m-2"
+      style="width: 5rem; background-color: #c60606; border-color: #c60606"
+    >
+      Delete
+    </button>
   </div>
 </div>

@@ -22,7 +22,7 @@ export class TripCardComponent implements OnInit {
     return this.authenticationService.isLoggedIn();
   }
 
-  editTrip(trip: Trip): void {
+  private editTrip(trip: Trip): void {
     console.log(
       "TripCardComponent#editTrip setting tripCode in localStorage",
       trip.code
@@ -31,5 +31,11 @@ export class TripCardComponent implements OnInit {
     localStorage.setItem("tripCode", trip.code);
     console.log("TripCardComponent#editTrip routing to TripEditComponent");
     this.router.navigate(["edit-trip"]);
+  }
+
+  private deleteTrip(trip: Trip): void {
+    localStorage.removeItem("tripCode");
+    localStorage.setItem("tripCode", trip.code);
+    this.router.navigate(["delete-trip"]);
   }
 }

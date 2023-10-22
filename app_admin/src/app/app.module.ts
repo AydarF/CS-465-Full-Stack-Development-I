@@ -13,6 +13,7 @@ import { NavbarComponent } from "./navbar/navbar.component";
 import { HomeComponent } from "./home/home.component";
 import { LoginComponent } from "./login/login.component";
 import { HttpModule } from "@angular/http";
+import { TripDeleteComponent } from "./trip-delete/trip-delete.component";
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { HttpModule } from "@angular/http";
     NavbarComponent,
     HomeComponent,
     LoginComponent,
+    TripDeleteComponent,
   ],
   imports: [
     BrowserModule,

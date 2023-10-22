@@ -69,7 +69,10 @@ export class TripDataService {
       }),
     };
     return await lastValueFrom(
-      this.httpClient.delete(`${this.apiBaseUrl}/trips/${tripCode}`)
+      this.httpClient.delete(
+        `${this.apiBaseUrl}/trips/${tripCode}`,
+        httpOptions
+      )
     ).catch(this.handleError);
   }
 
